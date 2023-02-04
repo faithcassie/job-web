@@ -9,6 +9,9 @@ import SearchIcon from "@mui/icons-material/Search";
 import LoginIcon from "@mui/icons-material/Login";
 import IconButton from "@mui/material/IconButton";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { Button } from "@mui/material";
+import { authContext } from "../context/AuthContext";
+import LogInModal from "./LogInModal";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -53,43 +56,83 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
+  const [open, setOpen] = React.useState(false);
+
+  const { user, logIn, logOut, style } = React.useContext(authContext);
+  const handleOpen = () => setOpen(true);
+  // console.log(user);
+
+  //password
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static">
-        <Toolbar sx={{ mx: "auto", width: "70%" }}>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "flex" } }}
-          >
-            JOB ROUTING
-          </Typography>
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ "aria-label": "search" }}
-            />
-          </Search>
-          <div
-            style={{ display: "flex", justifyContent: "flex-end", flexGrow: 1 }}
-          >
-            <IconButton>
-              <LoginIcon sx={{ display: { xs: "none", md: "flex" } }} />
-              <Typography
-                component="div"
-                sx={{ pl: "10px", display: { xs: "none", md: "flex" } }}
-              >
-                Sign In
-              </Typography>
-              <MoreVertIcon sx={{ display: { xs: "flex", md: "none" } }} />
-            </IconButton>
-          </div>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <>
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static">
+          <Toolbar sx={{ mx: "auto", width: "70%" }}>
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { xs: "none", sm: "flex" } }}
+            >
+              JOB ROUTING
+            </Typography>
+            <Search>
+              <SearchIconWrapper>
+                <SearchIcon />
+              </SearchIconWrapper>
+              <StyledInputBase
+                placeholder="Search…"
+                inputProps={{ "aria-label": "search" }}
+              />
+            </Search>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                flexGrow: 1,
+              }}
+            >
+              <IconButton>
+                <LoginIcon sx={{ display: { xs: "none", md: "flex" } }} />
+                <Typography
+                  component="div"
+                  sx={{ pl: "10px", display: { xs: "none", md: "flex" } }}
+                >
+                  {user.name ? (
+                    <>
+                      <p>{user.name}</p>
+                      <Button
+                        onClick={logOut}
+                        style={{
+                          textDecoration: "none",
+                          color: "white",
+                          backgroundColor: "transparent",
+                        }}
+                      >
+                        Sign Out
+                      </Button>
+                    </>
+                  ) : (
+                    <Button
+                      onClick={handleOpen}
+                      style={{
+                        textDecoration: "none",
+                        color: "white",
+                        backgroundColor: "transparent",
+                      }}
+                    >
+                      Sign In
+                    </Button>
+                  )}
+                </Typography>
+                <MoreVertIcon sx={{ display: { xs: "flex", md: "none" } }} />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <LogInModal open={open} setOpen={setOpen} />
+    </>
   );
 }
