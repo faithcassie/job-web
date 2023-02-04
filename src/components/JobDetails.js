@@ -35,7 +35,7 @@ function JobDetails() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [location.pathname]);
   console.log(job.skills);
   const navigate = useNavigate();
   const handleClose = () => {

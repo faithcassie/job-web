@@ -58,7 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function SearchAppBar() {
   const [open, setOpen] = React.useState(false);
 
-  const { user, logIn, logOut, style } = React.useContext(authContext);
+  const { user, logOut } = React.useContext(authContext);
   const handleOpen = () => setOpen(true);
   // console.log(user);
 

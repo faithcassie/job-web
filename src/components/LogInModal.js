@@ -20,7 +20,7 @@ import { authContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 function LogInModal({ open, setOpen, jobId }) {
-  const { user, logIn, logOut, style } = React.useContext(authContext);
+  const { logIn, style } = React.useContext(authContext);
   const navigate = useNavigate();
   const [name, setName] = React.useState("");
   const [showPassword, setShowPassword] = React.useState(false);

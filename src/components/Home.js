@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 // import jobs from "../jobs.json";
 import Pagination from "@mui/material/Pagination";
 import Box from "@mui/material/Box";
-import AuthContext from "../context/AuthContext";
+
 // import { authContext } from "../context/AuthContext";
 // import { useContext } from "react";
 
