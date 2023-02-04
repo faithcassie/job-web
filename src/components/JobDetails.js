@@ -22,7 +22,9 @@ function JobDetails() {
   console.log(location.pathname);
   const [job, setJob] = useState("");
   useEffect(() => {
-    fetch(`http://localhost:8000${location.pathname}`)
+    fetch(
+      `https://my-json-server.typicode.com/faithcassie/job-api${location.pathname}`
+    )
       .then((res) => {
         return res.json();
       })

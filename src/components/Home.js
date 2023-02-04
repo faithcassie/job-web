@@ -13,7 +13,9 @@ function Home() {
   const [jobs, setJobs] = useState(null);
   const [page, setPage] = React.useState(1);
   useEffect(() => {
-    fetch(`http://localhost:8000/jobs?_page=${page}&_limit=6`)
+    fetch(
+      `https://my-json-server.typicode.com/faithcassie/job-api/jobs?_page=${page}&_limit=4`
+    )
       .then((res) => {
         // console.log(res);
         return res.json();
@@ -40,7 +42,7 @@ function Home() {
       </Grid>
       <Box sx={{ mx: "auto", width: "80%", pb: 2 }}>
         <Pagination
-          count={10}
+          count={2}
           page={page}
           onChange={handleChange}
           color="primary"
@@ -48,6 +50,7 @@ function Home() {
             width: "25rem",
             mx: "auto",
             pt: 3,
+            px: "auto",
           }}
         />
       </Box>
